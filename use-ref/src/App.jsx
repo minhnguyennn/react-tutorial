@@ -1,33 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function App(params) {
-  const [value, setValue] = useState(0);
+  const [input, setInput] = useState("");
+
   const count = useRef(0);
-  
+
   useEffect(() => {
     count.current = count.current + 1;
-    console.log("UseEffect: ", count.current);
   });
 
   return (
     <>
-      <button
-        onClick={() => {
-          setValue((prev) => prev - 1);
-        }}
-      >
-        -1
-      </button>
-      <h1>{value}</h1>
-      <button
-        onClick={() => {
-          setValue((prev) => prev + 1);
-        }}
-      >
-        +1
-      </button>
+      <input 
+        type="text"
+        value={input}
+        placeholder="Add text...."
+        onChange={(e) => setInput(e.target.value)}
+      />
       <h1>Render Count: {count.current}</h1>
-      {console.log("Return: ", count.current)}
     </>
   );
 }
